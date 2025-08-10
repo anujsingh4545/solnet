@@ -13,7 +13,7 @@ const buttonVariants = cva(
           "hover:from-tertiary/80 hover:to-tertiary-foreground/80 bg-gradient-to-r from-primary/70 to-primary/90 text-secondary",
       },
       size: {
-        default: "px-[20px] text-[14px] py-[10px]",
+        default: "px-[20px] text-[12px] md:text-[14px] py-[8px] md:py-[10px]",
         sm: "px-[10px] text-[12px] py-[8px]",
         md: "px-[15px] text-[14px] py-[8px]",
         lg: "px-[24px] text-[16px] py-[10px]",

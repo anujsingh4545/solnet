@@ -65,6 +65,7 @@ body {
   font-family: "Manrope", Arial, Helvetica, sans-serif;
   min-height: 100dvh;
   max-width: 110rem;
+  min-width: 420px !important;
   margin: auto;
   background-color: var(--background);
 }

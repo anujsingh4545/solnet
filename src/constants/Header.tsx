@@ -53,7 +53,7 @@ const Header = () => {
           : "0px 0px 0px rgba(0,0,0,0)",
       }}
       transition={{ duration: 0.3 }}
-      className="sticky top-0 w-full !bg-background z-10 px-10 py-5 flex items-center justify-between"
+      className="sticky top-0 w-full !bg-background z-10 px-5 md:px-10 py-5 flex items-center justify-between"
     >
       <section className=" flex items-center gap-2 ">
         <Box className=" w-[35px] h-[35px] text-primary " />

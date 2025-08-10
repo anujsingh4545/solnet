@@ -15,15 +15,15 @@ const InfoArea = React.memo(() => {
         </span>
       </section>
 
-      <section className=" w-full flex flex-col gap-[20px] ">
-        <h1 className=" font-mont flex flex-col text-[50px] leading-[65px] text-primary font-bold ">
+      <section className=" w-full flex flex-col gap-[15px] md:gap-[20px] ">
+        <h1 className=" font-mont flex flex-col text-[28px] md:text-[50px] leading-[40px] md:leading-[65px] text-primary font-bold ">
           Now create Solana Token
           <span className=" text-tertiary ">
             without code<span className=" text-primary">.</span>
           </span>
         </h1>
 
-        <p className=" text-primary/80 w-[75%]  ">
+        <p className=" text-primary/80 w-[90%] md:w-[75%] text-[14px] md:text-[16px]  ">
           Launch your Solana token with an all‑in‑one toolkit for creation, metadata, airdrops, and
           secure transfers.
         </p>
@@ -43,7 +43,7 @@ const InfoArea = React.memo(() => {
 
 const BannerArea = React.memo(() => {
   return (
-    <div className="w-full h-full flex items-center justify-end  ">
+    <div className="hidden w-full h-full lg:flex items-center justify-end  ">
       <section className=" h-fit grid grid-cols-2 items-center gap-[20px] justify-items-end" >
         <img src={banner1} loading="lazy" className="rounded-lg border border-border col-span-1 hover-scale shadow-glow brightness-110 contrast-105 saturate-125 " />
         <img src={banner2} loading="lazy" className="rounded-lg border border-border col-span-1 hover-scale shadow-glow brightness-110 contrast-105 saturate-125 " />
@@ -55,8 +55,8 @@ const BannerArea = React.memo(() => {
 
 const Home = () => {
   return (
-    <div className=" w-full flex items-center flex-col gap-[100px] ">
-      <section className="w-full flex items-start justify-between h-[calc(100dvh-100px)] gap-[30px] ">
+    <div className=" w-full flex items-center flex-col gap-[60px] md:gap-[100px] ">
+      <section className="w-full flex items-start justify-between h-fit md:h-[calc(100dvh-100px)] gap-[30px] ">
         <InfoArea />
         <BannerArea />
       </section>

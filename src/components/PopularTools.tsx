@@ -50,14 +50,14 @@ const ToolsDisplayBox: React.FC<toolsDisplayBoxProps> = ({ data }) => {
           damping: 20,
         },
       }}
-      className=" w-full col-span-1 border border-border bg-secondary/70 rounded-lg hover:bg-secondary h-[165px] p-[20px] flex flex-col items-start justify-between "
+      className=" w-full col-span-1 border border-border bg-secondary/70 rounded-lg hover:bg-secondary h-[130px] md:h-[165px] p-[14px] md:p-[20px] flex flex-col items-start justify-between "
     >
       <section className=" flex flex-col w-full gap-[5px] ">
         <div className=" flex gap-[10px] items-center justify-start ">
-          <data.Icon className="text-tertiary w-[20px]" />
-          <h3 className=" text-primary text-[20px] font-medium ">{data?.title}</h3>
+          <data.Icon className="text-tertiary w-[16px] md:w-[20px]" />
+          <h3 className=" text-primary text-[16px] md:text-[20px] font-medium ">{data?.title}</h3>
         </div>
-        <p className=" text-primary/80 text-[14px] ">{data?.desc}</p>
+        <p className=" text-primary/80 text-[12px] md:text-[14px] ">{data?.desc}</p>
       </section>
 
       <section className=" flex items-center justify-end w-full ">
@@ -71,16 +71,16 @@ const ToolsDisplayBox: React.FC<toolsDisplayBoxProps> = ({ data }) => {
 
 const PopularTools = () => {
   return (
-    <div className=" w-full flex flex-col gap-[70px] ">
+    <div className=" w-full flex flex-col gap-[30px] md:gap-[70px] ">
       <section className=" flex flex-col gap-[10px] w-full items-start ">
-        <h2 className=" text-[40px] font-bold font-mont text-primary ">Solnet Powerful Tools</h2>
-        <p className=" w-[60%] text-primary/80 text-[16px] ">
+        <h2 className=" text-[25px] md:text-[40px] font-bold font-mont text-primary ">Solnet Powerful Tools</h2>
+        <p className=" w-[90%] md:w-[60%] text-primary/80  text-[13px] md:text-[16px] ">
           Start working with Solana Token Creator. It allows you to create Solana tokens by
           creating, deploying, airdropping, transferring, and updating metadata.
         </p>
       </section>
 
-      <section className=" w-full grid grid-cols-3 gap-[30px] ">
+      <section className=" w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[20px] md:gap-[30px] ">
         {TOOLS_INFO.map((tool, index) => (
           <ToolsDisplayBox key={index} data={tool} />
         ))}
