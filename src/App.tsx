@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import AppLayout from "./constants/layouts/AppLayout"
 import Home from "./pages/Home"
+import ThemeModeManager from "./states/ThemeModeManager"
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
     }
   ])
 
-  return  <RouterProvider router={router} />
+  return  <ThemeModeManager><RouterProvider router={router} /></ThemeModeManager>
 }
 
 export default App
