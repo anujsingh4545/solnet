@@ -2,32 +2,38 @@ import { Database, Gift, Key, PlusCircle, Send } from "lucide-react";
 import React from "react";
 import { motion } from "framer-motion";
 import Button from "../constants/ui/Button";
+import { useNavigate } from "react-router-dom";
 
 const TOOLS_INFO = [
   {
     title: "Create Token",
     desc: "Easily create your own Solana token without coding.",
     Icon: PlusCircle,
+    link:"/create-token"
   },
   {
     title: "Token Metadata",
     desc: "Manage and update your token's metadata.",
     Icon: Database,
+    link:"/token-metadata"
   },
   {
     title: "Airdrop",
     desc: "Distribute tokens to multiple users effortlessly.",
     Icon: Gift,
+    link:"/airdrop"
   },
   {
     title: "Send Transaction",
     desc: "Send transactions securely and quickly.",
     Icon: Send,
+    link:"/send-transaction"
   },
   {
     title: "Get your ATA address",
     desc: "Find your ATA address with only few steps.",
     Icon: Key,
+    link:"/ata-address"
   },
 ];
 
@@ -36,10 +42,14 @@ interface toolsDisplayBoxProps {
     title: string;
     desc: string;
     Icon: React.FC<React.SVGProps<SVGSVGElement>>;
+    link:string;
   };
 }
 
 const ToolsDisplayBox: React.FC<toolsDisplayBoxProps> = ({ data }) => {
+
+  const navigate = useNavigate();
+
   return (
     <motion.div
       whileHover={{
@@ -61,7 +71,7 @@ const ToolsDisplayBox: React.FC<toolsDisplayBoxProps> = ({ data }) => {
       </section>
 
       <section className=" flex items-center justify-end w-full ">
-        <Button>
+        <Button onClick={()=> navigate(data?.link)}>
           Use this &nbsp; →
         </Button>
       </section>
@@ -71,7 +81,7 @@ const ToolsDisplayBox: React.FC<toolsDisplayBoxProps> = ({ data }) => {
 
 const PopularTools = () => {
   return (
-    <div className=" w-full flex flex-col gap-[30px] md:gap-[70px] ">
+    <div id="popularTools" className=" w-full flex flex-col gap-[30px] md:gap-[70px] ">
       <section className=" flex flex-col gap-[10px] w-full items-start ">
         <h2 className=" text-[25px] md:text-[40px] font-bold font-mont text-primary ">Solnet Powerful Tools</h2>
         <p className=" w-[90%] md:w-[60%] text-primary/80  text-[13px] md:text-[16px] ">

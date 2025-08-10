@@ -151,3 +151,8 @@ body {
     transform: translateY(0);
   }
 }
+
+
+.bannnerImgStyle {
+  @apply rounded-lg border border-border col-span-1  brightness-110 contrast-105 saturate-125;
+}

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Switch } from "radix-ui";
 import { useTheme } from "../states/ThemeModeManager";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const ThemeProvider = React.memo(() => {
   const [mounted, setMounted] = useState<boolean>(false);
@@ -55,7 +56,7 @@ const Header = () => {
       transition={{ duration: 0.3 }}
       className="sticky top-0 w-full !bg-background z-10 px-5 md:px-10 py-5 flex items-center justify-between"
     >
-      <section className=" flex items-center gap-2 ">
+      <Link to={"/"} className=" flex items-center gap-2 !no-underline ">
         <Box className=" w-[35px] h-[35px] text-primary " />
         <div className="flex flex-col gap-4">
           <span className="tracking-tighter text-3xl font-extrabold text-primary flex gap-2 items-center">
@@ -65,7 +66,7 @@ const Header = () => {
             </span>
           </span>
         </div>
-      </section>
+      </Link>
 
       <ThemeProvider />
     </motion.div>
