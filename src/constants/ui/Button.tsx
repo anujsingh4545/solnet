@@ -10,13 +10,14 @@ const buttonVariants = cva(
         default:
           "hover:from-tertiary/80 hover:to-tertiary-foreground/80 bg-gradient-to-r from-tertiary to-tertiary-foreground text-white",
         primary:
-          "hover:from-tertiary/80 hover:to-tertiary-foreground/80 bg-gradient-to-r from-primary/70 to-primary/90 text-secondary",
+          "hover:from-primary/70 hover:to-primary bg-gradient-to-r font-bold from-primary/60 to-primary/90 text-secondary",
       },
       size: {
         default: "px-[20px] text-[12px] md:text-[14px] py-[8px] md:py-[10px]",
         sm: "px-[10px] text-[12px] py-[8px]",
         md: "px-[15px] text-[14px] py-[8px]",
         lg: "px-[24px] text-[16px] py-[10px]",
+        full:"!w-full px-[24px] text-[14px] md:text-[16px] py-[8px] md:py-[10px] "
       },
     },
     defaultVariants: {

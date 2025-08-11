@@ -19,17 +19,17 @@ const ThemeProvider = React.memo(() => {
 
   return (
     <div className="flex items-center gap-2">
-      <Sun className={` w-6 h-6 ${isDarkMode ? "text-primary/50" : "text-primary"} `} />
+      <Sun className={` w-5 md:w-6 h-5 md:h-6 ${isDarkMode ? "text-primary/50" : "text-primary"} `} />
       <Switch.Root
         checked={isDarkMode}
         onCheckedChange={(checked) => {
           setMode(checked ? "dark" : "light");
         }}
-        className="inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors data-[state=checked]:bg-primary data-[state=unchecked]:bg-input "
+        className="inline-flex h-5 md:h-6 w-10 md:w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors data-[state=checked]:bg-primary data-[state=unchecked]:bg-input "
       >
-        <Switch.Thumb className="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0" />
+        <Switch.Thumb className="pointer-events-none block h-4 md:h-5 w-4 md:w-5 rounded-full bg-background shadow-lg transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0" />
       </Switch.Root>
-      <Moon className={` w-6 h-6 ${isDarkMode ? "text-primary" : "text-primary/50"} `} />
+      <Moon className={`w-5 md:w-6 h-5 md:h-6 ${isDarkMode ? "text-primary" : "text-primary/50"} `} />
     </div>
   );
 });
@@ -57,11 +57,11 @@ const Header = () => {
       className="sticky top-0 w-full !bg-background z-10 px-5 md:px-10 py-5 flex items-center justify-between"
     >
       <Link to={"/"} className=" flex items-center gap-2 !no-underline ">
-        <Box className=" w-[35px] h-[35px] text-primary " />
+        <Box className=" w-[30px] md:w-[35px] h-[35px] text-primary " />
         <div className="flex flex-col gap-4">
-          <span className="tracking-tighter text-3xl font-extrabold text-primary flex gap-2 items-center">
+          <span className="tracking-tighter text-2xl md:text-3xl font-extrabold text-primary flex gap-2 items-center">
             Solnet{" "}
-            <span className="rounded-full text-base bg-primary/10 border border-primary/50 px-2">
+            <span className="rounded-full text-sm md:text-base bg-primary/10 border border-primary/50 px-2">
               v1 &nbsp;. &nbsp;0
             </span>
           </span>
