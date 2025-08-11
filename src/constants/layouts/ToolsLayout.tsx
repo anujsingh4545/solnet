@@ -27,7 +27,7 @@ const ToolsLayout = () => {
       <section className=' w-full h-fit flex items-center justify-center ' >
         <Outlet/>
       </section>
-    </div>
+    </div> 
   )
 }
 
