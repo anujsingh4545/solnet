@@ -16,7 +16,7 @@ const CreateToken = () => {
         <TextAreaContainer label={"Description"} placeholder={"Token name"} rows={3} />
       </section>
       <Button size={"full"} variant={"primary"}>
-        Create Token
+        Create Token 
       </Button>
     </ToolsContainer>
   );

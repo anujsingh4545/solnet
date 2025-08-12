@@ -1,19 +1,23 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./constants/layouts/AppLayout";
 import Home from "./pages/Home";
-import ThemeModeManager from "./states/ThemeModeManager";
 import ToolsLayout from "./constants/layouts/ToolsLayout";
-import  CreateToken from "./pages/CreateToken";
+import CreateToken from "./pages/CreateToken";
 import TokenMetadata from "./pages/TokenMetadata";
 import Airdrop from "./pages/Airdrop";
 import SendTransaction from "./pages/SendTransaction";
 import AtaAddress from "./pages/AtaAddress";
-import {ConnectionProvider, WalletProvider} from "@solana/wallet-adapter-react";
-import {WalletModalProvider} from "@solana/wallet-adapter-react-ui";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import PrivateMiddleware from "./constants/MiddleWares/PrivateMiddleware";
-
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "./states/redux/store";
+import { useEffect } from "react";
+import { fetchUserBalance } from "./states/redux/thunk/userBalanceTHunks";
 
 function App() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { publicKey } = useWallet();
+  const { connection } = useConnection();
 
   const router = createBrowserRouter([
     {
@@ -24,45 +28,47 @@ function App() {
           element: <Home />,
         },
         {
-          element: <PrivateMiddleware><ToolsLayout /></PrivateMiddleware>,
+          element: (
+            <PrivateMiddleware>
+              <ToolsLayout />
+            </PrivateMiddleware>
+          ),
           children: [
             {
               path: "/create-token",
-              element: <CreateToken/>,
+              element: <CreateToken />,
             },
             {
               path: "/token-metadata",
-              element: <TokenMetadata/>,
+              element: <TokenMetadata />,
             },
             {
               path: "/airdrop",
-              element: <Airdrop/>,
+              element: <Airdrop />,
             },
             {
               path: "/send-transaction",
-              element: <SendTransaction/>,
+              element: <SendTransaction />,
             },
             {
               path: "/ata-address",
-              element: <AtaAddress/>,
+              element: <AtaAddress />,
             },
           ],
         },
       ],
     },
   ]);
-  
-  return (
-    <ConnectionProvider endpoint="https://solana-devnet.g.alchemy.com/v2/q4TmjMWJ4b9xYVD_3P9MFBV9ZmpYulYr" >
-      <WalletProvider autoConnect wallets={[]} >
-        <WalletModalProvider>
-          <ThemeModeManager>
-            <RouterProvider router={router} />
-          </ThemeModeManager>
-        </WalletModalProvider>
-      </WalletProvider>
-    </ConnectionProvider>
-  );
+
+  useEffect(() => {
+    if (publicKey && connection) {
+      dispatch(fetchUserBalance({ publicKey, connection }));
+
+      console.log("sxdcfvgbvfds", publicKey, connection);
+    }
+  }, [publicKey, connection, dispatch]);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;

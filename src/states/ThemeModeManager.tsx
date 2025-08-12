@@ -43,7 +43,7 @@ const ThemeModeManager: React.FC<ThemeModeManagerProps> = ({ children }) => {
   }, [mode]);
 
   useEffect(()=>{
-    setIsToolsLocked(connected ?  false : true);
+    // setIsToolsLocked(connected ?  false : true);
   },[connected])
 
   const value = useMemo(

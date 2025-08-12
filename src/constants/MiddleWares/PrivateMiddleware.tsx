@@ -21,9 +21,9 @@ const PrivateMiddleware: React.FC<PrivateMiddlewareProps> = ({ children }) => {
         // Once it's decided, stop checking
         setChecking(false);
 
-        if (!connected) {
-            navigate('/');
-        }
+        // if (!connected) {
+        //     navigate('/');
+        // }
     }, [connected, connecting, wallet, navigate]);
 
     if (checking) return <></>;
