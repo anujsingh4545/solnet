@@ -1,3 +1,4 @@
+import { useWallet } from "@solana/wallet-adapter-react";
 import React, {
   createContext,
   useContext,
@@ -12,36 +13,43 @@ import React, {
 type ThemeMode = "dark" | "light";
 
 interface ThemeContextType {
-  mode: ThemeMode | null;
-  setMode: Dispatch<SetStateAction<ThemeMode | null>>;
+  mode: ThemeMode;
+  setMode: Dispatch<SetStateAction<ThemeMode>>;
+  isToolsLocked: boolean;
+  setIsToolsLocked: Dispatch<SetStateAction<boolean>>;
 }
 
 interface ThemeModeManagerProps {
   children: ReactNode;
 }
 
-export const ThemeContext = createContext<ThemeContextType | null>(null);
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
+const getInitialTheme = (): ThemeMode => {
+  const savedTheme = localStorage.getItem("SOLNET_MODE") as ThemeMode | null;
+  if (savedTheme) return savedTheme;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+};
 
 const ThemeModeManager: React.FC<ThemeModeManagerProps> = ({ children }) => {
-  const [mode, setMode] = useState<ThemeMode | null>(null);
+
+  const {connected} = useWallet();
+  const [mode, setMode] = useState<ThemeMode>(getInitialTheme);
+  const [isToolsLocked, setIsToolsLocked] = useState(false);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("SOLNET_MODE") as ThemeMode | null;
-    if (savedTheme) {
-      setMode(savedTheme);
-    } else {
-      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setMode(isDark ? "dark" : "light");
-    }
-  }, []);
-
-  useEffect(() => {
-     if (!mode) return;
     document.documentElement.setAttribute("data-theme", mode);
     localStorage.setItem("SOLNET_MODE", mode);
   }, [mode]);
 
-  const value = useMemo(() => ({ mode, setMode }), [mode]);
+  useEffect(()=>{
+    setIsToolsLocked(connected ?  false : true);
+  },[connected])
+
+  const value = useMemo(
+    () => ({ mode, setMode, isToolsLocked, setIsToolsLocked }),
+    [mode, isToolsLocked]
+  );
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };

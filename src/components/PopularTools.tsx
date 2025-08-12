@@ -3,6 +3,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import Button from "../constants/ui/Button";
 import { useNavigate } from "react-router-dom";
+import LockWrapper from "../constants/ui/LockWrapper";
+import { useTheme } from "../states/ThemeModeManager";
 
 const TOOLS_INFO = [
   {
@@ -19,7 +21,7 @@ const TOOLS_INFO = [
   },
   {
     title: "Airdrop",
-    desc: "Distribute tokens to multiple users effortlessly.",
+    desc: "Instantly fund your wallet with SOL.",
     Icon: Gift,
     link:"/airdrop"
   },
@@ -49,6 +51,7 @@ interface toolsDisplayBoxProps {
 const ToolsDisplayBox: React.FC<toolsDisplayBoxProps> = ({ data }) => {
 
   const navigate = useNavigate();
+  const {isToolsLocked} = useTheme();
 
   return (
     <motion.div
@@ -71,8 +74,10 @@ const ToolsDisplayBox: React.FC<toolsDisplayBoxProps> = ({ data }) => {
       </section>
 
       <section className=" flex items-center justify-end w-full ">
-        <Button onClick={()=> navigate(data?.link)}>
-          Use this &nbsp; →
+        <Button onClick={()=> navigate(data?.link)} disabled={isToolsLocked} >
+          <LockWrapper disabled={isToolsLocked} >
+            Use this &nbsp; →
+          </LockWrapper>
         </Button>
       </section>
     </motion.div>

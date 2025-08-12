@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 
 const buttonVariants = cva(
-  "transition ease-in-out border border-border rounded-lg text-white font-medium flex items-center justify-center cursor-pointer",
+  "transition ease-in-out border border-border rounded-lg text-white font-medium flex items-center justify-center cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed",
   {
     variants: {
       variant: {
@@ -11,6 +11,8 @@ const buttonVariants = cva(
           "hover:from-tertiary/80 hover:to-tertiary-foreground/80 bg-gradient-to-r from-tertiary to-tertiary-foreground text-white",
         primary:
           "hover:from-primary/70 hover:to-primary bg-gradient-to-r font-bold from-primary/60 to-primary/90 text-secondary",
+        secondary:
+          "hover:bg-primary/10 border border-border rounded-lg text-primary  bg-secondary"
       },
       size: {
         default: "px-[20px] text-[12px] md:text-[14px] py-[8px] md:py-[10px]",

@@ -5,10 +5,16 @@ import banner2 from "../assets/banner2.png";
 import banner3 from "../assets/banner3.png";
 import PopularTools from "../components/PopularTools";
 import { useNavigate } from "react-router-dom";
+import Button from "../constants/ui/Button";
+import LockWrapper from "../constants/ui/LockWrapper";
+import { useTheme } from "../states/ThemeModeManager";
+import {WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import "@solana/wallet-adapter-react-ui/styles.css";
 
 const InfoArea = React.memo(() => {
 
   const navigate = useNavigate();
+  const {isToolsLocked} = useTheme();
 
   const scrollToPopularTools = ()=>{
 
@@ -40,13 +46,18 @@ const InfoArea = React.memo(() => {
           secure transfers.
         </p>
 
+        <div className=" w-fit relative  ">
+          <WalletMultiButton />
+        </div>
         <div className=" flex items-center gap-[20px]">
-          <button onClick={()=> navigate("/create-token")} className="px-[20px] text-[14px] cursor-pointer hover:from-tertiary/80 hover:to-tertiary-foreground/80 transition ease-in-out py-[10px] border border-border rounded-lg text-white font-medium bg-gradient-to-r from-tertiary to-tertiary-foreground">
-            Create Token
-          </button>
-          <button onClick={scrollToPopularTools}  className="px-[20px] text-[14px] cursor-pointer hover:bg-primary/10 py-[10px] border border-border rounded-lg text-primary font-medium bg-secondary ">
+          <Button onClick={()=> navigate("/create-token")} disabled={isToolsLocked} >
+            <LockWrapper disabled={isToolsLocked} >
+              Create Token
+            </LockWrapper>
+          </Button>
+          <Button variant={"secondary"} onClick={scrollToPopularTools} >
             Browse tools
-          </button>
+          </Button>
         </div>
       </section>
     </div>
@@ -66,6 +77,7 @@ const BannerArea = React.memo(() => {
 });
 
 const Home = () => {
+
   return (
     <div className=" w-full flex items-center flex-col gap-[60px] md:gap-[100px] ">
       <section className="w-full flex items-start justify-between h-fit md:h-[calc(100dvh-100px)] gap-[30px] ">

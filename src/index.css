@@ -155,4 +155,10 @@ body {
 
 .bannnerImgStyle {
   @apply rounded-lg border border-border col-span-1  brightness-110 contrast-105 saturate-125;
+
+}
+
+
+button.wallet-adapter-button-trigger {
+  @apply  w-[285px] md:w-[300px] hover:from-tertiary/80 hover:to-tertiary-foreground/80 bg-gradient-to-r from-tertiary to-tertiary-foreground text-white text-[14px] md:text-[16px]
 }

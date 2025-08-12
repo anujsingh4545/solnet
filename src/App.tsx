@@ -8,8 +8,13 @@ import TokenMetadata from "./pages/TokenMetadata";
 import Airdrop from "./pages/Airdrop";
 import SendTransaction from "./pages/SendTransaction";
 import AtaAddress from "./pages/AtaAddress";
+import {ConnectionProvider, WalletProvider} from "@solana/wallet-adapter-react";
+import {WalletModalProvider} from "@solana/wallet-adapter-react-ui";
+import PrivateMiddleware from "./constants/MiddleWares/PrivateMiddleware";
+
 
 function App() {
+
   const router = createBrowserRouter([
     {
       element: <AppLayout />,
@@ -19,7 +24,7 @@ function App() {
           element: <Home />,
         },
         {
-          element: <ToolsLayout />,
+          element: <PrivateMiddleware><ToolsLayout /></PrivateMiddleware>,
           children: [
             {
               path: "/create-token",
@@ -46,11 +51,17 @@ function App() {
       ],
     },
   ]);
-
+  
   return (
-    <ThemeModeManager>
-      <RouterProvider router={router} />
-    </ThemeModeManager>
+    <ConnectionProvider endpoint="https://solana-devnet.g.alchemy.com/v2/q4TmjMWJ4b9xYVD_3P9MFBV9ZmpYulYr" >
+      <WalletProvider autoConnect wallets={[]} >
+        <WalletModalProvider>
+          <ThemeModeManager>
+            <RouterProvider router={router} />
+          </ThemeModeManager>
+        </WalletModalProvider>
+      </WalletProvider>
+    </ConnectionProvider>
   );
 }
 
