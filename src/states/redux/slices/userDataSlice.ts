@@ -42,7 +42,7 @@ const userDataSlice = createSlice({
     },
   },
   selectors: {
-    checkErrorExists: (state) => (prefix: string) => Object.keys(state.errors).some((key) => key.startsWith(prefix))
+    checkErrorExists: (state) => (prefix: string) => Object.keys(state.errors).some((key) => key.startsWith(prefix)),
   },
   extraReducers: (builder) => {
     builder
@@ -61,10 +61,8 @@ const userDataSlice = createSlice({
   },
 });
 
-export const { setErrors, addError, removeError, removeErrorByPrefix} =
-  userDataSlice.actions;
+export const { setErrors, addError, removeError, removeErrorByPrefix } = userDataSlice.actions;
 
-export const {checkErrorExists} = userDataSlice.selectors;
-
+export const { checkErrorExists } = userDataSlice.selectors;
 
 export default userDataSlice.reducer;

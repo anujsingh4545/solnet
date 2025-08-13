@@ -8,18 +8,13 @@ import { addError, checkErrorExists, removeError } from "../states/redux/slices/
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { toast } from "sonner";
-import { LoaderCircle } from "lucide-react";
+import { Loader } from "lucide-react";
 import { fetchUserBalance } from "../states/redux/thunk/userBalanceTHunks";
 
 const Airdrop = () => {
-  
-  const [requiredBalance, setRequiredBalance] = useState<
-    string | number | readonly string[] | undefined
-  >("");
+  const [requiredBalance, setRequiredBalance] = useState<string | number | readonly string[] | undefined>("");
 
-  const { userBalance, userBalanceError, userBalanceLoading, errors } = useSelector(
-    (state: RootState) => state.userData
-  );
+  const { userBalance, userBalanceError, userBalanceLoading, errors } = useSelector((state: RootState) => state.userData);
   const dispatch = useDispatch<AppDispatch>();
   const { publicKey } = useWallet();
   const { connection } = useConnection();
@@ -59,12 +54,10 @@ const Airdrop = () => {
     }
   }
 
-  function fetchUserAccountBalance(){
-
-    if(publicKey && connection){
-      dispatch(fetchUserBalance({publicKey, connection}));
-    }
-    else{
+  function fetchUserAccountBalance() {
+    if (publicKey && connection) {
+      dispatch(fetchUserBalance({ publicKey, connection }));
+    } else {
       toast.error("Account not connected!");
     }
   }
@@ -73,11 +66,9 @@ const Airdrop = () => {
     <div className="w-full flex items-center justify-center  flex-col gap-[30px] ">
       <section className=" w-full  flex items-center justify-center gap-[10px] font-mont text-[20px] md:text-[25px] font-semibold">
         <h5 className=" text-primary   ">Current Balance : </h5>
-        <span className=" text-tertiary ">
-          {userBalanceLoading ? "loading..." : userBalanceError ? "error" : userBalance?.toFixed(2) + " SOL"}
-        </span>
-        <button  onClick={fetchUserAccountBalance} className=" bg-border rounded-full p-[5px] cursor-pointer flex items-center justify-center min-w-[35px] min-h-[35px] " >
-          <LoaderCircle className={` text-primary w-[20px] ${userBalanceLoading ? "animate-spin" : "" }`} />
+        <span className=" text-tertiary ">{userBalanceLoading ? "loading..." : userBalanceError ? "error" : userBalance?.toFixed(2) + " SOL"}</span>
+        <button onClick={fetchUserAccountBalance} className=" bg-border rounded-full p-[5px] cursor-pointer flex items-center justify-center min-w-[35px] min-h-[35px] ">
+          <Loader className={` text-primary w-[20px] ${userBalanceLoading ? "animate-spin" : ""}`} />
         </button>
       </section>
 
@@ -96,11 +87,7 @@ const Airdrop = () => {
             errorMessage={errors["airdrop_amount"] && errors["airdrop_amount"]?.message}
           />
         </section>
-        <Button
-          disabled={!requiredBalance || Boolean(errorExists) || isLoading}
-          size={"full"}
-          onClick={requestAirdrop}
-        >
+        <Button disabled={!requiredBalance || Boolean(errorExists) || isLoading} size={"full"} onClick={requestAirdrop}>
           {isLoading ? "processing..." : "Airdrop SOL"}
         </Button>
       </ToolsContainer>

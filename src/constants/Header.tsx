@@ -49,9 +49,7 @@ const Header = () => {
     <motion.div
       initial={{ boxShadow: "0px 0px 0px rgba(0,0,0,0)" }}
       animate={{
-        boxShadow: scrolled
-          ? `0px 4px 6px ${isDarkMode ? "rgba(250, 250, 250, 0.1)" : "rgba(23, 23, 23, 0.1)"}`
-          : "0px 0px 0px rgba(0,0,0,0)",
+        boxShadow: scrolled ? `0px 4px 6px ${isDarkMode ? "rgba(250, 250, 250, 0.1)" : "rgba(23, 23, 23, 0.1)"}` : "0px 0px 0px rgba(0,0,0,0)",
       }}
       transition={{ duration: 0.3 }}
       className="sticky top-0 w-full !bg-background z-10 px-5 md:px-10 py-5 flex items-center justify-between"
@@ -60,10 +58,7 @@ const Header = () => {
         <Box className=" w-[30px] md:w-[35px] h-[35px] text-primary " />
         <div className="flex flex-col gap-4">
           <span className="tracking-tighter text-2xl md:text-3xl font-extrabold text-primary flex gap-2 items-center">
-            Solnet{" "}
-            <span className="rounded-full text-sm md:text-base bg-primary/10 border border-primary/50 px-2">
-              v1 &nbsp;. &nbsp;0
-            </span>
+            Solnet <span className="rounded-full text-sm md:text-base bg-primary/10 border border-primary/50 px-2">v1 &nbsp;. &nbsp;0</span>
           </span>
         </div>
       </Link>
